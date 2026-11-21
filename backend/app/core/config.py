@@ -9,13 +9,14 @@ class Settings(BaseSettings):
     # Model adapter config: "onnx" (Real AI Inference) or "mock"
     MODEL_ADAPTER: str = "onnx"
     
-    # Thresholds (PRD §4 / §10)
-    REFERABLE_THRESHOLD: float = 0.50
+    # Thresholds (PRD §4 / §10 & AGENT_LESSONS.md calibrated cutpoints)
+    REFERABLE_THRESHOLD: float = 0.4106  # tau = 41.06% optimized on IDRiD 455-image benchmark for >=90% sensitivity
     UNCERTAINTY_THRESHOLD: float = 0.65
     QUALITY_CUTOFF: float = 0.60
+    CALIBRATION_TEMPERATURE: float = 1.9567  # Fitted Platt scaling temperature
     
-    # Database: PostgreSQL (with fallback to SQLite for local standalone testing)
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/dr_screening"
+    # Database: SQLite fallback default for standalone portability, or PostgreSQL via ENV
+    DATABASE_URL: str = "sqlite:///./dr_screening.db"
     
     # MinIO / S3 Object Storage (PRD §5 & §12)
     MINIO_ENDPOINT: str = "localhost:9000"

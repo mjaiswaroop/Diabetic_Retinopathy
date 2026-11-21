@@ -27,7 +27,7 @@ class ONNXModelAdapter(ModelAdapter):
     def __init__(self, iqa_path: str = "ml/outputs/iqa_net.onnx", dr_path: str = "ml/outputs/dr_classifier.onnx"):
         self.iqa_session = None
         self.dr_session = None
-        self.temperature = 1.0
+        self.temperature = getattr(settings, "CALIBRATION_TEMPERATURE", 1.9567)
 
         # Try to load ONNX runtime sessions
         try:
