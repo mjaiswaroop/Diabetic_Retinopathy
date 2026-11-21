@@ -21,6 +21,16 @@ This document records failure modes, root causes, architectural rules, and regre
 ### 4. Determinism & Evaluation Mode
 - **Lesson:** PyTorch models must strictly execute with `model.eval()`, `torch.no_grad()`, and constant random seeds to ensure output logits match within $10^{-5}$ across multiple passes.
 
+### 5. FOV Aspect Ratio & Letterbox Floor Trap
+- **Lesson:** Hardcoded contour area thresholds (e.g. `area < 0.15 * total_area`) fail on modern smartphone and wide letterboxed displays where the circular retina accounts for only 11%–14% of the canvas. This caused sharp images to be rejected as ungradable or underexposed because the vast black letterbox dragged down the mean luminance.
+- **Rule:** Detect circular retinal boundaries using low-threshold binary contours with adaptive area limits (`area >= 0.02 * total_area` and circularity $> 0.35$). Quality gates (blur, illumination, glare) must run strictly on the masked retinal tissue (`mask > 0`), never on the surrounding black borders.
+
+### 6. Clinical Fail-Safe Rule (Zero Fail-Open)
+- **Lesson:** If an image is flagged as `UNGRADABLE` (`grade == -1`), the API must return `clinical_status: "UNGRADABLE"`, `referable: None`, `referable_prob: None`, and `dme_status: "UNGRADABLE"`. The UI must never interpret a missing or zero probability as `Non-Referable` (0%) or clear DME. An explicit amber alert requiring clinician review or recapture must be rendered.
+
+### 7. Automated CI Safety Gate
+- **Lesson:** Automated regression tests (`ml/test_ci_safety.py`) must run in CI (`.github/workflows/ci.yml`) to guarantee that future commits never regress the ungradable fail-safe, the wide-letterbox crop invariance, or 20D/28D lens optical inversion parity.
+
 ---
 
 ## Audit Cross-Check Log
