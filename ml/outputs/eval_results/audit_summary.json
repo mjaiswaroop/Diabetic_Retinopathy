@@ -1,0 +1,62 @@
+[
+  {
+    "id": "IDRiD_370",
+    "gt": "Grade 0",
+    "pred": "Grade 1 (Non-Referable)",
+    "region": "Mid-Periphery (207,239)",
+    "status": "PASS",
+    "lesson": "None (Passed)",
+    "foveal_pct": 0.0,
+    "ref_prob": 0.2926994562149048
+  },
+  {
+    "id": "IDRiD_118",
+    "gt": "Grade 0",
+    "pred": "Grade 1 (Non-Referable)",
+    "region": "Nasal Arcade (0,0)",
+    "status": "PASS",
+    "lesson": "None (Passed)",
+    "foveal_pct": 0.0,
+    "ref_prob": 0.33575284481048584
+  },
+  {
+    "id": "IDRiD_139",
+    "gt": "Grade 0",
+    "pred": "Grade 0 (Non-Referable)",
+    "region": "Nasal Arcade (0,0)",
+    "status": "PASS",
+    "lesson": "None (Passed)",
+    "foveal_pct": 0.0,
+    "ref_prob": 0.14659979939460754
+  },
+  {
+    "id": "IDRiD_001",
+    "gt": "Grade 3",
+    "pred": "Grade 2 (Referable)",
+    "region": "Mid-Periphery (240,80)",
+    "status": "PASS",
+    "lesson": "None (Passed)",
+    "foveal_pct": 0.0,
+    "ref_prob": 0.9491510391235352
+  },
+  {
+    "id": "IDRiD_003",
+    "gt": "Grade 2",
+    "pred": "Grade 1 (Referable)",
+    "region": "Temporal Arcade (271,80)",
+    "status": "PASS",
+    "lesson": "None (Passed)",
+    "foveal_pct": 0.0,
+    "ref_prob": 0.4812696874141693
+  },
+  {
+    "id": "IDRiD_005",
+    "gt": "Grade 4",
+    "pred": "Grade 4 (Referable)",
+    "region": "Mid-Periphery (240,240)",
+    "status": "PASS",
+    "lesson": "None (Passed)",
+    "foveal_pct": 12.113360323886639,
+    "ref_prob": 0.906989574432373
+  }
+]
