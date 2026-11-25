@@ -4,6 +4,7 @@ import sys
 import cv2
 import numpy as np
 import torch
+from torchvision import models
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
@@ -41,7 +42,13 @@ if not os.path.exists(MODEL_PATH):
     )
 
 print(f"[Server] Loading Model from: {MODEL_PATH}")
-model = torch.load(MODEL_PATH, map_location="cpu", weights_only=False)
+loaded = torch.load(MODEL_PATH, map_location="cpu", weights_only=False)
+if isinstance(loaded, dict):
+    state_dict = loaded.get("state_dict", loaded)
+    model = models.resnet50(weights=None, num_classes=5)
+    model.load_state_dict(state_dict)
+else:
+    model = loaded
 model.eval()
 
 # Grad-CAM++ State Storage
