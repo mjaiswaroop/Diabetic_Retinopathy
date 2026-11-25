@@ -25,3 +25,4 @@ echo.
 echo Opening RetinaScan Pro in your browser...
 timeout /t 2 /nobreak >nul
 start http://localhost:3005
+

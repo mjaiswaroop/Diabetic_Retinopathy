@@ -21,3 +21,4 @@ Start-Process "http://localhost:3005"
 Write-Host "`nServices launched successfully:" -ForegroundColor Cyan
 Write-Host " - Frontend: http://localhost:3005" -ForegroundColor White
 Write-Host " - Backend:  http://localhost:8000/docs`n" -ForegroundColor White
+
